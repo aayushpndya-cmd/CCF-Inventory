@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import openpyxl
 
 no_3s_excel = pd.read_excel('Uniform_inventory_ccf.xlsx', sheet_name='No. 3s')
 PCS_excel = pd.read_excel('Uniform_inventory_ccf.xlsx', sheet_name='PCS')
