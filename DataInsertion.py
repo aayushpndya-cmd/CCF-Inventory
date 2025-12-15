@@ -29,8 +29,9 @@ def sheet_and_column_selector(sheet_name, col_name):
 def insert_data_to_excel(sheet_name, col_name, size_name, data_input):
     df = sheet_and_column_selector(sheet_name, col_name)
     target_column = df.columns.get_loc(col_name) + 1
-    df.at[size_name, df.columns[target_column]] = data_input
-    with pd.ExcelWriter('Uniform_inventory_ccf.xlsx', engine='openpyxl', mode='a', if_sheet_exists='replace') as writer:
+    target_row = df.index.get_loc(size_name)
+    df.at[target_row, target_column] = data_input
+    with pd.ExcelWriter('Uniform_inventory_ccf.xlsx', engine='openpyxl', mode='a', if_sheet_exists='overlay') as writer:
         df.to_excel(writer, sheet_name=sheet_name, index=False)
 
 insert_data_to_excel('No. 3s', 'Male Shirts', 32, 10)
